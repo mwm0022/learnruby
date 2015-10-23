@@ -10,6 +10,12 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
+    begin
+      @cart = Cart.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      logger.error "Attempt to access invalid cart #{params[:id]}"
+      redirect_to store_url, notice: 'Invalid cart'
+    end
   end
 
   # GET /carts/new
@@ -64,7 +70,12 @@ class CartsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
-      @cart = Cart.find(params[:id])
+        begin
+            @cart = Cart.find(params[:id])
+        rescue ActiveRecord::RecordNotFound
+            logger.error "Attempt to access invalid cart #{params[:id]}"
+            redirect_to store_url, notice: 'Invalid cart'
+        end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
