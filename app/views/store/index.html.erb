@@ -15,3 +15,13 @@
 		</div>
 	</div>
 <% end %>
+<script>
+	$(".button_to").on('submit',function(e){
+		$.ajax({
+			url: $(this).prop('action'),
+			dataType: 'json'
+		}).done(function(data){
+                                                 
+		});
+	})
+</script>
