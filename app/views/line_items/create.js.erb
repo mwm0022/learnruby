@@ -1,0 +1,6 @@
+$("#cart").html("<%=j(render @cart) %>");
+<% if @cart.line_items.empty? %>
+  $("#cart").hide();
+<% else %>
+  $("#cart").show();
+<% end %>
