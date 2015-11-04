@@ -4,3 +4,6 @@ $("#cart").html("<%=j(render @cart) %>");
 <% else %>
   $("#cart").show();
 <% end %>
+$("#notice").each(function(){
+	$(this).hide();
+});
