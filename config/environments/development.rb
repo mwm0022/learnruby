@@ -14,8 +14,16 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
-
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.126.com",
+    :port => 25,
+    :domain => "126.com",
+    :authentication => :login,
+    :user_name => "mwm0022@126.com",
+    :password => "QYquyue19"
+  }
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
@@ -35,6 +43,7 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
+
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
