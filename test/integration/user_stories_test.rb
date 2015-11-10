@@ -13,7 +13,7 @@ class UserStoriesTest < ActionDispatch::IntegrationTest
 	assert_template "index"
 
 	xml_http_request :post, '/line_items', :product_id => ruby_book.id
-	assert_response :seccess
+	assert_response :success
 
 	cart = Cart.find(session[:cart_id])
 	assert_equal 1, cart.line_items.size
@@ -25,7 +25,7 @@ class UserStoriesTest < ActionDispatch::IntegrationTest
 
 	post_via_redirect "/orders",
 			:order => { :name => "Dave Thomas",
-				      :address => "123 The street",
+				      :address => "123 The Street",
 				      :email => "dave@example.com",
 				      :pay_type => "Check"}
 	assert_response :success
@@ -47,7 +47,7 @@ class UserStoriesTest < ActionDispatch::IntegrationTest
 	assert_equal ruby_book, line_item.product
 
 	mail = ActionMailer::Base.deliveries.last
-	assert_equal ["dave@example.com"], mail.Thomas
+	assert_equal ["dave@example.com"], mail.To
 	assert_equal 'Sam Ruby <depot@example.com>', mail[:from].value
 	assert_equal "Pragmatic Store Order Confirmation", mail.subject
    end
